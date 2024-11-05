@@ -1,0 +1,168 @@
+{
+  "trips": [
+    {
+      "reservationId": 1728894614756,
+      "clientData": {
+        "name": "Carlos",
+        "lastName": "Infante",
+        "country": "Nicaragua",
+        "email": "kuva5008@gmail.com"
+      },
+      "tripDateStart": "2024-10-21",
+      "tripDateEnd": "2024-10-20",
+      "tripDays": -1,
+      "totalAmount": 690,
+      "routes": [
+        {
+          "id": "1-Havana",
+          "routeStart": "Airport",
+          "routeEnd": "Havana",
+          "routeDateStart": "2024-10-21",
+          "routeDateEnd": "2024-10-25",
+          "days": 4,
+          "taxiPrice": 50,
+          "totalAir": 640,
+          "totalChill": 0,
+          "totalRoute": 640,
+          "airBnBs": [
+            {
+              "id": "obrapia",
+              "name": "Obrapia",
+              "hab": 2,
+              "price": 80,
+              "subTotal": 640
+            }
+          ],
+          "chillOuts": []
+        }
+      ],
+      "id": 1
+    },
+    {
+      "reservationId": 1728991192051,
+      "clientData": {
+        "name": "Rene",
+        "lastName": "El turista",
+        "country": "Macondo",
+        "email": "macando@gmail.com"
+      },
+      "tripDateStart": "2024-10-21",
+      "tripDateEnd": "2024-11-10",
+      "tripDays": 20,
+      "totalAmount": 1210,
+      "routes": [
+        {
+          "id": "1-Havana",
+          "routeStart": "Airport",
+          "routeEnd": "Havana",
+          "routeDateStart": "2024-10-21",
+          "routeDateEnd": "2024-10-27",
+          "days": 6,
+          "taxiPrice": 50,
+          "totalAir": 960,
+          "totalChill": 200,
+          "totalRoute": 1160,
+          "airBnBs": [
+            {
+              "id": "obrapia",
+              "name": "Obrapia",
+              "hab": 2,
+              "price": 80,
+              "subTotal": 960
+            }
+          ],
+          "chillOuts": [
+            {
+              "id": "fac",
+              "name": "Hit Up Fábrica de Arte Cubano (FAC)",
+              "subTotal": 120,
+              "dateChill": "2024-10-22"
+            },
+            {
+              "id": "tour colonial",
+              "name": "Tour Colonial",
+              "subTotal": 80,
+              "dateChill": "2024-10-24"
+            }
+          ]
+        }
+      ],
+      "id": 2
+    },
+    {
+      "reservationId": 0,
+      "clientData": {
+        "name": "",
+        "lastName": "",
+        "country": "",
+        "email": ""
+      },
+      "tripDateStart": "2024-10-15",
+      "tripDateEnd": "2024-10-15",
+      "tripDays": 0,
+      "totalAmount": 0,
+      "routes": [],
+      "id": 3
+    },
+    {
+      "reservationId": 0,
+      "clientData": {
+        "name": "",
+        "lastName": "",
+        "country": "",
+        "email": ""
+      },
+      "tripDateStart": "2024-10-15",
+      "tripDateEnd": "2024-10-15",
+      "tripDays": 0,
+      "totalAmount": 0,
+      "routes": [],
+      "id": 4
+    },
+    {
+      "reservationId": 1728992455760,
+      "clientData": {
+        "name": "Rene",
+        "lastName": "El Salvaje",
+        "country": "Punta Cotica",
+        "email": "berro@gmail.com"
+      },
+      "tripDateStart": "2024-10-21",
+      "tripDateEnd": "2024-10-27",
+      "tripDays": 6,
+      "totalAmount": 690,
+      "routes": [
+        {
+          "id": "1-Cienfuegos",
+          "routeStart": "Airport",
+          "routeEnd": "Cienfuegos",
+          "routeDateStart": "2024-10-21",
+          "routeDateEnd": "2024-10-24",
+          "days": 3,
+          "taxiPrice": 120,
+          "totalAir": 270,
+          "totalChill": 300,
+          "totalRoute": 570,
+          "airBnBs": [
+            {
+              "id": "hermanas",
+              "name": "Casa Las Hermanas",
+              "hab": 3,
+              "price": 30,
+              "subTotal": 270
+            }
+          ],
+          "chillOuts": [
+            {
+              "id": "nicho",
+              "name": "Nicho: Amazing waterfalls and more",
+              "subTotal": 300,
+              "dateChill": "2024-10-15"
+            }
+          ]
+        }
+      ],
+      "id": 5
+    }
+  ]
+}

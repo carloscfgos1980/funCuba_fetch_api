@@ -1,0 +1,40 @@
+span,
+h5 {
+  color: orange;
+  margin: 5px;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+a,
+footer p {
+  color: orange;
+}
+nav a.active {
+  background: gray;
+  padding: 5px 0;
+  border-radius: 4px;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.image_container {
+  width: min-content;
+}
+
+a.image_container {
+  width: 200px;
+  height: 180px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+a.image_container img {
+  width: 100%;
+}
+
+.carousel-img:hover {
+  cursor: pointer;
+}
