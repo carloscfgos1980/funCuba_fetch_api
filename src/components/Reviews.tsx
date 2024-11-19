@@ -28,7 +28,7 @@ const Reviews = ({ items }: any) => {
                 <h3 className="text-center">{stars(item.rate)}</h3>
                 <p style={{ height: "100px" }}>{item.comment}</p>
                 <div className="mt-4">
-                    <h4>{`${item.author} (${item.country})`}</h4>
+                    <h4>{`${item.name} (${item.country})`}</h4>
                 </div>
               </div>
             </Carousel.Item>

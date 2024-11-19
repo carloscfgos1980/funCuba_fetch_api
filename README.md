@@ -369,3 +369,20 @@ this is a fix value I have for the reviews until I fell the reviews... tomorrow.
 - I implemented fetch the reviews from funCua-api. I had a buf cuz the fake api and the real one were using the same port (8000)
 
 - The reviews are set as a carousel now instead of displaying just 3 feeds
+
+# 13/11/2024
+
+- New component: FormSelectCountry. So the form will display the list of countries.
+
+# 19/11/2024
+
+src/layout/Pages/TripPlan.tsx
+I created warning for wrong dates
+
+src/components/FormClient.tsx
+addingClient function. I added checked for name, last name, country and email
+
+**to do**
+create check for review form
+change input field for the countries in Feedbacks.tsx
+add modal in Feedbacks to let know the used all went ok

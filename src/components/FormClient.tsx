@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addClient, Client } from "../redux/filteredTripPlan";
+import FormSelectCountry from "./FormSelectCountry";
+import SimpleAlert from "./SimpleAlert";
+import country_list from "./contentText/countries";
 
 const FormClient = ({ toggle }: any) => {
   const dispatch = useDispatch();
@@ -11,6 +14,8 @@ const FormClient = ({ toggle }: any) => {
     country: "",
     email: "",
   });
+  const [alertOn, setAlertOn] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
   const updateInput = (e: any) => {
     setStatus({
@@ -19,19 +24,47 @@ const FormClient = ({ toggle }: any) => {
     });
   };
 
+  const getCountry = (country:string)=> setStatus({
+    ...status,
+        country
+  })
+
   const clientData = {
     name: status.name,
     lastName: status.lastName,
     country: status.country,
     email: status.email,
   };
-  const addingClient = () => {
-    dispatch(addClient(clientData));
-    toggle();
-  };
 
+  const alertToggle = () => {
+        setAlertOn(!alertOn);
+  }
+
+
+  const addingClient = () => {
+    if(!status.email.includes('@')){
+      setMessage('invalid email!');
+      alertToggle();
+    } else if(status.name.length < 1 || status.lastName.length < 1){
+      setMessage('please fill name and last name field!');
+      alertToggle();
+    } else if(!country_list.includes(status.country)){
+      setMessage('please, choose a country!');
+      alertToggle();
+    }
+    else {
+      dispatch(addClient(clientData));
+      toggle();
+      setAlertOn(false);
+    }  
+  };
+  
+  console.log('alertOn', alertOn);
+  
+ 
   return (
     <div>
+      {alertOn && <SimpleAlert message={message} alertToggle={alertToggle}/>} 
       <h1 className="display-5 text-center mt-2 mb-4">Fill ur data</h1>
       <Form className="container-fluid">
         <div className="row justify-content-around align-items-end">
@@ -57,17 +90,6 @@ const FormClient = ({ toggle }: any) => {
             />
             <label htmlFor="floatingLastName">Last Name</label>
           </div>
-          <div className="form-floating col-5 col-sm-2 my-2">
-            <input
-              name="country"
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              placeholder="Country"
-              onChange={updateInput}
-            />
-            <label htmlFor="floatingCountry">Country</label>
-          </div>
           <div className="form-floating col-7 col-sm-4 my-2">
             <input
               name="email"
@@ -78,6 +100,9 @@ const FormClient = ({ toggle }: any) => {
               onChange={updateInput}
             />
             <label htmlFor="floatingEmail">Email address</label>
+          </div>
+          <div className="col-5 col-sm-3 my-2">
+            <FormSelectCountry getCountry={getCountry}/>
           </div>
         </div>
       </Form>

@@ -20,6 +20,7 @@ import pagesContent from "../../components/contentText/pagesContent";
 import ModalTrip from "../../components/ModalTrip";
 import FormClient from "../../components/FormClient";
 import FormSelectItem from "../../components/FormSelectItem";
+import SimpleAlert from "../../components/SimpleAlert";
 
 const TripPlan = () => {
   const [cityId, setCityId] = useState<string>("Havana");
@@ -29,6 +30,7 @@ const TripPlan = () => {
   const TripText2 = pagesContent.tripPlan.intro2;
   const [modal, setModal] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
+
 
   const toggle = (): void => setModal(!modal);
 
@@ -50,12 +52,13 @@ const TripPlan = () => {
   };
 
   const getCityId = (value: string): void => setCityId(value);
+  console.log('city', cityId)
 
-  const selectedCity: any = citiesData.find((city) => city?.id === cityId);
-  const city = selectedCity.city;
+  // const selectedCity: any = citiesData.find((city) => city?.id === cityId);
+  // const city = selectedCity.city;
 
   const getDestination = () => {
-    dispatch(addTripEnd(city));
+    dispatch(addTripEnd(cityId));
     setDisplay1("inline-block");
   };
 
@@ -69,6 +72,8 @@ const TripPlan = () => {
   const tripDays = tripPlan.trip.tripDays;
   const routeDays = tripPlan.route.days;
   const routes = tripPlan.trip.routes;
+  console.log('trip', tripPlan.trip);
+
   const tripDateStart: string = new Date(
     tripPlan.trip.tripDateStart,
   ).toDateString();
@@ -97,6 +102,7 @@ const TripPlan = () => {
   return (
     <div key={key} className="container-fluid bg-light py-3 px-4">
       <div className="row justify-content-center">
+       
         <div className="col-sm-8">
           <div className="trip-introduction">
             <h1 className="text-center">Trip Plan</h1>
@@ -104,14 +110,17 @@ const TripPlan = () => {
             <p className="lead">{TripText2}</p>
           </div>
           <div className="clientData">
-            <FormClient toggle={toggle} />
+            <FormClient toggle={toggle}/>
           </div>
           <div className="trip-calendar mt-3">
             <h1 className="text-center">Let's start. Select date</h1>
-            <FormCalendar
-              getDateStart={getDateTripStart}
-              getDateEnd={getDateTripEnd}
-            />
+            <div className="d-flex justify-content-between">
+              <FormCalendar
+                getDateStart={getDateTripStart}
+                getDateEnd={getDateTripEnd}
+              />
+              {tripDays < 1 && tripDays !==0 &&<p className="text-danger">check ur departure date!</p>} 
+            </div>
             <table className="table table-dark table-striped text-center my-3">
               <thead>
                 <tr>
@@ -129,7 +138,7 @@ const TripPlan = () => {
                   <th className="mx-2">{tripPlan.remaninedDays}</th>
                 </tr>
               </tbody>
-            </table>
+            </table>           
           </div>
           <div className="destionations">
             <h1 className="text-center mt-4">Routes</h1>
@@ -171,6 +180,7 @@ const TripPlan = () => {
             </div>
           )}
           <div className="form" style={{ display: display1 }}>
+            {routeDays < 1 && routeDays !== 0 &&<p className="text-danger text-center mt-3">check ur departure date!</p>} 
             <div className="route-date d-flex justify-content-end mt-3 me-3">
               <FormCalendar
                 getDateStart={getDateRouteStart}
@@ -186,10 +196,10 @@ const TripPlan = () => {
               />
             </div>
             <div className="add-airB">
-              <AddAirB city={city} daysRoute={routeDays} modal={modal} />
+              <AddAirB city={cityId} daysRoute={routeDays} modal={modal} />
             </div>
             <div className="add-chill">
-              <AddChilling city={city} modal={modal} />
+              <AddChilling city={cityId} modal={modal} />
             </div>
             {edit === false ? (
               <button className="btn btn-success float-end" onClick={getRoute}>

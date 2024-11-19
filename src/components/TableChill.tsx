@@ -1,6 +1,11 @@
+import { useState } from "react";
+import { calculateDays } from "../redux/filteredTripPlan";
+
 const TableChill = ({ items, deletingChill, modal }: any) => {
+
   return (
     <table className="table table-light table-striped text-center my-3">
+
       <thead>
         <tr>
           <th scope="col">Name</th>
@@ -13,16 +18,16 @@ const TableChill = ({ items, deletingChill, modal }: any) => {
         {items.map((chill: any, index: number) => {
           const dateChill: string = new Date(chill.dateChill).toDateString();
           return (
-            <tr key={index}>
-              <td className="mx-2">{chill.name}</td>
-              <td className="mx-2">$ {chill.subTotal}</td>
-              <td className="mx-2">{dateChill}</td>
-              {modal === false && (
-                <td>
-                  <button onClick={() => deletingChill(chill.id)}>X</button>
-                </td>
-              )}
-            </tr>
+              <tr key={index}>
+                <td className="mx-2">{chill.name}</td>
+                <td className="mx-2">$ {chill.subTotal}</td>
+                <td className="mx-2">{dateChill}</td>
+                {modal === false && (
+                  <td>
+                    <button onClick={() => deletingChill(chill.id)}>X</button>
+                  </td>
+                )}
+              </tr>
           );
         })}
       </tbody>

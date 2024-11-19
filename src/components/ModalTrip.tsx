@@ -36,10 +36,6 @@ const ModalTrip = ({ modal, toggle, editingRoute }: any) => {
   };
 
   return (
-    <div>
-      <button className="btn btn-warning" onClick={toggle}>
-        Check ur trip
-      </button>
       <Modal
         open={modal}
         onClose={toggle}
@@ -52,7 +48,7 @@ const ModalTrip = ({ modal, toggle, editingRoute }: any) => {
               id="modal-modal-title"
               variant="h6"
               component="h2"
-              className=" mx-5"
+              className="mx-5"
             >
               <div className="d-flex justify-content-between">
                 <p className="display-3 mt-5">TRIP</p>
@@ -64,9 +60,14 @@ const ModalTrip = ({ modal, toggle, editingRoute }: any) => {
                   X
                 </p>
               </div>
+              <div className="float-end mb-5">
+                  <p style={{width: "350px"}} className="text-dark bg-warning border border-dark rounded-3 p-1 text-center">
+                    make sure that ur data is correct
+                  </p>
+              </div>
             </Typography>
           </div>
-          <div className="routes">
+          <div className="routes mt-5">
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <div className="mx-4">
                 <div className="client-data">
@@ -141,7 +142,6 @@ const ModalTrip = ({ modal, toggle, editingRoute }: any) => {
           </div>
         </Box>
       </Modal>
-    </div>
   );
 };
 

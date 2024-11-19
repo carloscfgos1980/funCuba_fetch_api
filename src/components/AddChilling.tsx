@@ -3,7 +3,7 @@ import chillingData from "./contentText/chillingData";
 import FormSelectItem from "./FormSelectItem";
 import { memo } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/configureStore";
-import { addChillOut, deleteChill } from "../redux/filteredTripPlan";
+import { addChillOut, calculateDays, deleteChill } from "../redux/filteredTripPlan";
 import TableChill from "./TableChill";
 
 const DatePicker = memo(({ selectedDate, onDateChange }: any) => {
@@ -16,13 +16,26 @@ const AddChilling = ({ city, modal }: any) => {
     new Date().toISOString().slice(0, 10),
   );
   const [chillAmount, setChillAmount] = useState<string>("1");
+    const [checkDate, setCheckDate] = useState<boolean>(false);
+
+
   const tripPlan = useAppSelector((state) => state.filteredTripPlan);
   const chillOuts = tripPlan.route.chillOuts;
   const totalChill = tripPlan.route.totalChill;
 
   const dispatch = useAppDispatch();
 
-  const getDate = (e: any) => setDate(e.target.value);
+  const getDate = (e: any) => {
+    setDate(e.target.value);
+    let today = new Date().toISOString().slice(0, 10);
+    const days = calculateDays(today, e.target.value);
+    console.log('days', days)
+        if(days < 1) {
+        setCheckDate(true);
+      } else {
+        setCheckDate(false)
+      }
+  };
 
   const getChillName = (value: string): void => setChillId(value);
 
@@ -46,6 +59,8 @@ const AddChilling = ({ city, modal }: any) => {
   const deletingChill = (id: string | undefined) => {
     dispatch(deleteChill(id));
   };
+
+
 
   return (
     <div>
@@ -75,9 +90,9 @@ const AddChilling = ({ city, modal }: any) => {
         ) : (
           <p className="col-3 mt-2">sub total: 0</p>
         )}
-
         <div className="col-4 mt-2">
           <DatePicker selectedDate={date} onDateChange={getDate} />
+        {checkDate && <p className="text-danger text-center">Check the date!</p>}
         </div>
       </div>
       <button
@@ -87,6 +102,7 @@ const AddChilling = ({ city, modal }: any) => {
         Add
       </button>
       <div>
+
         <TableChill
           items={chillOuts}
           deletingChill={deletingChill}

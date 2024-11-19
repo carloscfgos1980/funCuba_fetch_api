@@ -71,7 +71,7 @@ type AddAirBnB = {
   subTotal: number;
 };
 
-const url = "http://localhost:9000/trips";
+const url = "http://localhost:8000/v1/trips";
 
 const saveTrip = async (trip: Trip) => {
   try {
@@ -83,6 +83,19 @@ const saveTrip = async (trip: Trip) => {
 };
 
 export const saveTripAsync = createAsyncThunk("trips/saveTripsAsync", saveTrip);
+
+export const calculateDays = (day1: string, day2: string) => {
+  const dateStart = new Date(day1);
+  const dateEnd = new Date(day2);
+  let one_day = 1000 * 60 * 60 * 24;
+  let Result = Math.round((dateEnd.getTime() - dateStart.getTime()) / one_day);
+  return Result;
+};
+const previousLocation = (ends: string[], id: string) => {
+  const index = ends.indexOf(id);
+  const previous = ends[index - 1];
+  return previous;
+};
 
 const initialState: PlanTripState = {
   remaninedDays: 0,
@@ -132,19 +145,6 @@ const initialState: PlanTripState = {
   },
 };
 
-const calculateDays = (day1: string, day2: string) => {
-  const dateStart = new Date(day1);
-  const dateEnd = new Date(day2);
-  let one_day = 1000 * 60 * 60 * 24;
-  let Result = Math.round((dateEnd.getTime() - dateStart.getTime()) / one_day);
-  return Result;
-};
-const previousLocation = (ends: string[], id: string) => {
-  const index = ends.indexOf(id);
-  const previous = ends[index - 1];
-  return previous;
-};
-
 export const filteredPlanTripSlice = createSlice({
   name: "filteredPlanTrip",
   initialState,
@@ -172,7 +172,8 @@ export const filteredPlanTripSlice = createSlice({
       state.route.id = `${routeNum}-${action.payload}`;
       state.route.routeEnd = action.payload;
       // array to save all the destinations so I can get previous location which is needed to calcultate taxi price
-      state.destinations.push(state.route.id);
+      // state.destinations.push(state.route.id);
+      state.destinations = [...state.destinations, state.route.id]
       state.route.routeStart = previousLocation(
         state.destinations,
         state.route.id,

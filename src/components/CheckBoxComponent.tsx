@@ -11,6 +11,7 @@ const CheckBoxComponent = ({ start, end, getTaxiPrice }: any) => {
   );
 
   const price = selectedTrip?.price;
+  
   const handleChange = (value: number | undefined) => {
     setChecked(!checked);
     if (!checked) {
