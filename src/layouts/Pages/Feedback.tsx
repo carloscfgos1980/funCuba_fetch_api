@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../redux/configureStore";
+import { useAppDispatch, useAppSelector } from "../../redux/configureStore";
 import FeedsField from "../../components/FeedsField";
 import { Review, saveReviewsAsync } from "../../redux/filteredReviews";
+import ModalSuccess from "../../components/ModalSuccess";
+import FormSelectCountry from "../../components/FormSelectCountry";
 
 const Feedback = () => {
   const [feedField, setFeedField] = useState<string>("airB");
@@ -12,7 +14,9 @@ const Feedback = () => {
   const [country, setCountry] = useState<string>("");
   const [displayAlert, setDisplayAlert] = useState<string>("none");
   const [key, setKey] = useState(0);
-  // const { reviews } = useAppSelector((state) => state.filteredReviews);
+  const {postSuccessful} = useAppSelector(state => state.filteredTripPlan);
+  console.log('post sucesfull', postSuccessful);
+
   const dispatch = useAppDispatch();
 
   const getItemId = (id: string) => setItemId(id);
@@ -36,8 +40,14 @@ const Feedback = () => {
     setKey((currentKey) => currentKey + 1);
   };
 
+  const getCountry = (land:string) => setCountry(land)
+
   return (
     <div key={key} className="container-fluid bg-light px-3">
+      <div className="modal-success">
+        {postSuccessful && <ModalSuccess/>}
+        
+      </div>
       <div className="row justify-content-center align-content-center">
         <div className="col-sm-8">
           <h1 className="text-center">Feedback</h1>
@@ -60,14 +70,7 @@ const Feedback = () => {
               <label htmlFor="floatingInput">Name</label>
             </div>
             <div className="form-floating mb-3 col-5">
-              <input
-                type="text"
-                className="form-control"
-                id="floatingInput"
-                placeholder="client-service"
-                onChange={(e) => setCountry(e.target.value)}
-              />
-              <label htmlFor="floatingInput">Country</label>
+            <FormSelectCountry getCountry={getCountry}/>
             </div>
           </div>
           <div className="rate-explanation">
@@ -98,7 +101,7 @@ const Feedback = () => {
               aria-label="Default select example"
               onChange={(e) => setFeedField(e.target.value)}
             >
-              <option selected>Select</option>
+              <option value="DEFAULT" disabled>Select</option>
               <option value="airB">Air B&B</option>
               <option value="chill">Chill Out</option>
               <option value="funCuba">Fun Cuba</option>

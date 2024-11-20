@@ -59,9 +59,6 @@ const FormClient = ({ toggle }: any) => {
     }  
   };
   
-  console.log('alertOn', alertOn);
-  
- 
   return (
     <div>
       {alertOn && <SimpleAlert message={message} alertToggle={alertToggle}/>} 

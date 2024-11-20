@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { calculateDays } from "../redux/filteredTripPlan";
+
 
 const TableChill = ({ items, deletingChill, modal }: any) => {
 

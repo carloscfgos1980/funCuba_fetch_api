@@ -21,7 +21,6 @@ const Reviews = ({ items }: any) => {
       <h1 className="text-center">reviews</h1>
       <Carousel cols={3} rows={1} gap={10} loop>
         {items.map((item: any, index: number) => {
-          console.log('item')
           return (
             <Carousel.Item key={index} className="image_container">
               <div className="align-items-stretch">

@@ -23,7 +23,6 @@ const fetchreviews = async (): Promise</*unresolved*/ any> => {
   try {
     const response = await axios.get(URL_REVIEWS);
     const reviews = response.data;
-    console.log('fetch reviews', reviews)
     return { reviews };
   } catch (error) {
     console.error(error);

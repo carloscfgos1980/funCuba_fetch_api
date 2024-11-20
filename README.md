@@ -382,7 +382,8 @@ I created warning for wrong dates
 src/components/FormClient.tsx
 addingClient function. I added checked for name, last name, country and email
 
-**to do**
-create check for review form
-change input field for the countries in Feedbacks.tsx
-add modal in Feedbacks to let know the used all went ok
+**20/11/2024**
+TO DO:
+create check for review form - pending
+change input field for the countries in Feedbacks.tsx - done
+add modal in Feedbacks to let know the used all went ok - done

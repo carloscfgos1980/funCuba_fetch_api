@@ -172,7 +172,6 @@ export const filteredPlanTripSlice = createSlice({
       state.route.id = `${routeNum}-${action.payload}`;
       state.route.routeEnd = action.payload;
       // array to save all the destinations so I can get previous location which is needed to calcultate taxi price
-      // state.destinations.push(state.route.id);
       state.destinations = [...state.destinations, state.route.id]
       state.route.routeStart = previousLocation(
         state.destinations,
@@ -209,7 +208,6 @@ export const filteredPlanTripSlice = createSlice({
       state.airBnB.hab = action.payload.hab;
       state.airBnB.price = action.payload.price;
       state.airBnB.subTotal = action.payload.subTotal;
-      // state.route.airBnBs.push(state.airBnB);
       state.route.airBnBs = [...state.route.airBnBs, state.airBnB];
       let sum = 0;
       state.route.airBnBs.forEach((item) => (sum += item.subTotal));
@@ -226,7 +224,6 @@ export const filteredPlanTripSlice = createSlice({
       state.chillOut.name = action.payload.name;
       state.chillOut.dateChill = action.payload.dateChill;
       state.chillOut.subTotal = action.payload.subTotal;
-      // state.route.chillOuts.push(state.chillOut);
       state.route.chillOuts = [...state.route.chillOuts, state.chillOut];
       let sum = 0;
       state.route.chillOuts.forEach((item) => (sum += item.subTotal));
@@ -242,7 +239,6 @@ export const filteredPlanTripSlice = createSlice({
       state.route.totalRoute = state.route.totalChill + state.route.totalAir;
       state.trip.totalAmount =
         state.trip.totalAmount + state.route.totalRoute + state.route.taxiPrice;
-      // state.trip.routes.push(state.route);
       state.trip.routes = [...state.trip.routes, state.route];
       state.route = initialState.route;
     },
@@ -270,6 +266,9 @@ export const filteredPlanTripSlice = createSlice({
       state.trip.reservationId = Number(new Date());
       state.trip.clientData = action.payload;
     },
+    togglePostSuccessful: (state) => {
+      state.postSuccessful = !state.postSuccessful;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(saveTripAsync.fulfilled, (state) => {
@@ -294,6 +293,7 @@ export const {
   editRoute,
   commitChanges,
   addClient,
+  togglePostSuccessful
 } = filteredPlanTripSlice.actions;
 
 export default filteredPlanTripSlice.reducer;

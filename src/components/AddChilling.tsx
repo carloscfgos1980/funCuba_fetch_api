@@ -29,7 +29,6 @@ const AddChilling = ({ city, modal }: any) => {
     setDate(e.target.value);
     let today = new Date().toISOString().slice(0, 10);
     const days = calculateDays(today, e.target.value);
-    console.log('days', days)
         if(days < 1) {
         setCheckDate(true);
       } else {

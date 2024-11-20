@@ -33,8 +33,6 @@ const ModalAir = ({
   const selectedFeeds = reviews.filter((feed: any) => {
     return feed.feedId === airId;
   });
-
-  console.log('selectedFeeds', selectedFeeds)
   
   const itemSrc = `${process.env.PUBLIC_URL}/imagesAir/${img}`;
 

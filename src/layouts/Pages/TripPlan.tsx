@@ -20,7 +20,6 @@ import pagesContent from "../../components/contentText/pagesContent";
 import ModalTrip from "../../components/ModalTrip";
 import FormClient from "../../components/FormClient";
 import FormSelectItem from "../../components/FormSelectItem";
-import SimpleAlert from "../../components/SimpleAlert";
 
 const TripPlan = () => {
   const [cityId, setCityId] = useState<string>("Havana");
@@ -30,6 +29,8 @@ const TripPlan = () => {
   const TripText2 = pagesContent.tripPlan.intro2;
   const [modal, setModal] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
+  const {postSuccessful} = useAppSelector(state => state.filteredTripPlan);
+  console.log('post sucesfull', postSuccessful);
 
 
   const toggle = (): void => setModal(!modal);
@@ -52,10 +53,6 @@ const TripPlan = () => {
   };
 
   const getCityId = (value: string): void => setCityId(value);
-  console.log('city', cityId)
-
-  // const selectedCity: any = citiesData.find((city) => city?.id === cityId);
-  // const city = selectedCity.city;
 
   const getDestination = () => {
     dispatch(addTripEnd(cityId));
@@ -72,7 +69,6 @@ const TripPlan = () => {
   const tripDays = tripPlan.trip.tripDays;
   const routeDays = tripPlan.route.days;
   const routes = tripPlan.trip.routes;
-  console.log('trip', tripPlan.trip);
 
   const tripDateStart: string = new Date(
     tripPlan.trip.tripDateStart,
@@ -98,6 +94,8 @@ const TripPlan = () => {
     setEdit(false);
     setDisplay1("none");
   };
+
+  const modalTrue = () => setModal(true);
 
   return (
     <div key={key} className="container-fluid bg-light py-3 px-4">
@@ -210,6 +208,9 @@ const TripPlan = () => {
                 Commit
               </button>
             )}
+          </div>
+          <div>
+            <button type="button" className="btn btn-info mt-3" onClick={modalTrue}>Trip Info</button>
           </div>
           <div className="modal-trip my-3">
             <ModalTrip
